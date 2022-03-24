@@ -3,7 +3,7 @@
 # fsafe.yegoryakubovich.com
 # hello@yegoryakubovich.com
 #
-# (c) 2021, Yegor Yakubovich
+# (c) 2022, Yegor Yakubovich
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,12 +20,10 @@
 
 
 from app import create_app
-from app.objects_processing import create_processing
 
 
 application = create_app()
 
 
 if __name__ == "__main__":
-    create_processing()
     application.run()

@@ -24,7 +24,7 @@ The project provides two types of interfaces: API and UI. Based on the Flask fra
 
 ## 3. License
 
-(c) 2021, Yegor Yakubovich
+(c) 2022, Yegor Yakubovich
 
 Licensed under the Apache License, Version 2.0 (the "License");
 

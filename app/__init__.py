@@ -7,6 +7,7 @@ from app.login import AccountLogin
 from app.main import blueprint_main
 from app.account import blueprint_account_ui, blueprint_account_api
 from app.models import models_create
+from app.objects_processing import create_processing
 from config import SECRET_KEY, DEBUG
 
 
@@ -15,6 +16,7 @@ blueprints = [blueprint_main, blueprint_errors, blueprint_account_ui, blueprint_
 
 def create_app():
     models_create()
+    create_processing()
 
     app = Flask(__name__)
     app.config['SECRET_KEY'] = SECRET_KEY

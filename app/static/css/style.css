@@ -8,6 +8,10 @@ body {
   position: relative;
 }
 
+ul {
+  padding-inline-start: 16px;
+}
+
 ::-webkit-scrollbar {
   width: 0;
 }
