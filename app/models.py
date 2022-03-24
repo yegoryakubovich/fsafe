@@ -4,9 +4,10 @@ from flask_jwt_extended import create_access_token
 from peewee import *
 
 from app.status import SensorStatusSituation, ObjectStatusJob, ObjectStatusSituation, SensorStatusJob
+from config import DB_PORT, DB_PASSWORD, DB_USER, DB_NAME, DB_HOST
 
 
-db = SqliteDatabase('db.sqlite')
+db = MySQLDatabase(DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
 
 
 def models_create():

@@ -23,9 +23,9 @@ from app import create_app
 from app.objects_processing import create_processing
 
 
-app = create_app()
+application = create_app()
 
 
 if __name__ == "__main__":
     create_processing()
-    app.run()
+    application.run()

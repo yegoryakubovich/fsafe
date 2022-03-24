@@ -14,6 +14,11 @@ The project provides two types of interfaces: API and UI. Based on the Flask fra
 ```pip install -r requirements.txt```
 #### 2.2 Create environment variables
 - SECRET_KEY
+- DB_NAME
+- DB_USER
+- DB_PASSWORD
+- DB_HOST
+- DB_PORT
 #### 2.3 Run server
 ```python main.py```
 
