@@ -1,0 +1,24 @@
+.errors__first__screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 85vh;
+}
+
+.errors__first__screen__title {
+  margin: 2px;
+  font-size: 100px;
+  font-weight: 600;
+  text-align: center;
+  color: #000;
+}
+
+.errors__first__screen__subtitle {
+  margin: 2px;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: #333;
+}

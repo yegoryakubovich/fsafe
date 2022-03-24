@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sign in
+{% endblock %}
+
+{% block body %}
+
+<div class="sign__first__screen">
+    <div class="sign__first__screen__inner">
+        <div class="sign__first__screen__image__login"></div>
+        <div class="sign__first__screen__form">
+            <form action="" method="post" class="form-contact">
+                <div class="sign__first__screen__title">
+                    Sign in
+                </div>
+                <div class="sign__first__screen__subtitle">
+                    Login
+                </div>
+                <label>
+                    <input class="input__text" type="text" name="login" value="{{ login }}" required />
+                </label><br>
+                <div class="sign__first__screen__subtitle">
+                    Password
+                </div>
+                <label>
+                    <input class="input__text" type="password" name="password" value="{{ password }}" required />
+                </label>
+                <label class="checkbox__container">
+                    <div class="sign__first__screen__subtitle">
+                        Remember me
+                    </div>
+                  <input type="checkbox" name="remember_me">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="button__center">
+                    <input type="submit" value="Sign In" />
+                </div>
+                <div class="sign__first__screen__url__title">
+                  Don't have an account? <a class="sign__first__screen__url__link" href="/account/registration">Sign up</a> now!
+                </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+.main__screen__inner {
+  width: 100%;
+  margin: 0 auto;
+  align-content: center;
+  justify-content: space-between;
+  display: flex;
+  height: 90vh;
+}
+
+.main__screen__image {
+  background: url("../images/main.png") center no-repeat;
+  background-size: 100%;
+  width: 65%;
+  margin-right: -10%;
+}
+
+
+.main__screen__form {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.main__screen__title {
+  font-size: 84px;
+  font-weight: 900;
+}
+
+.main__screen__subtitle {
+  margin-top: 12px;
+  font-size: 55px;
+  font-weight: 500;
+}
+
+
+@media (max-width: 890px) {
+  .main__screen__image {
+    display: none;
+  }
+  .main__screen__form {
+    width: 100%;
+  }
+}

@@ -1,0 +1,66 @@
+#objects, .objects {
+  margin: 24px 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#objects td, #objects th, .objects th, .objects td {
+  padding: 8px;
+}
+
+#objects tr:nth-child(even), .objects tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#objects tr:hover,  .objects tr:hover {
+  background-color: #ddd;
+}
+
+#objects th, .objects th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #ae73ef;
+  color: white;
+}
+
+.objects__screen__new__dispatcher {
+  width: 100%;
+  height: 50px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+#objects__screen__new {
+  width: 100%;
+  border: none;
+}
+
+#objects__screen__new td {
+  padding: 8px;
+}
+
+.objects__screen__new__title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.objects__screen__action {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+
+  color: #333;
+  text-decoration: none;
+
+  transition: color .2s linear;
+}
+
+.objects__screen__action:hover {
+  color: #8436D3;
+}

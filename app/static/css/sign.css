@@ -1,0 +1,102 @@
+.sign__first__screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 85vh;
+}
+
+.sign__first__screen__inner {
+  width: 100%;
+  margin: 0 auto;
+  align-content: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+.sign__first__screen__inner__logout {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  align-content: center;
+}
+
+.sign__first__screen__title {
+  font-size: 48px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.sign__first__screen__subtitle {
+  margin-top: 24px;
+  margin-bottom: 4px;
+  color: #333333;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.sign__first__screen__subtitle__logout {
+  margin: 16px 24px;
+  color: #333333;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.sign__first__screen__image__login {
+  background: url("../images/login.png") center no-repeat;
+  width: 40%;
+  margin-right: 10%;
+}
+
+.sign__first__screen__image__registration {
+  background: url("../images/registration.png") center no-repeat;
+  width: 30%;
+  margin-left: 10%;
+}
+
+.sign__first__screen__form {
+  width: 70%;
+  display: flex;
+  align-items: center;
+}
+
+.sign__first__screen__url__title {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333333;
+  text-align: center;
+}
+
+.sign__first__screen__url__link {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+
+  color: #ae73ef;
+  font-weight: 700;
+  text-decoration: none;
+
+  transition: color .2s linear;
+}
+
+.sign__first__screen__url__link:hover {
+  color: #333;
+}
+
+@media (max-width: 890px) {
+  .sign__first__screen__image__registration {
+    display: none;
+  }
+  .sign__first__screen__image__login {
+    display: none;
+  }
+  .sign__first__screen__form {
+    width: 100%;
+    margin: 16px;
+  }
+}
+

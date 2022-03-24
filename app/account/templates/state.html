@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="../../static/css/sign.css">{% extends 'base.html' %}
+
+{% block title %}
+State
+{% endblock %}
+
+{% block body %}
+
+<div class="account__screen__title">My objects state</div>
+<table class="objects">
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th style="width: 15%">Status</th>
+    <th style="width: 15%">Situation</th>
+  </tr>
+  {% for o in objects %}
+  <tr style="cursor: pointer" onclick="window.location.href='/account/state/{{ o.id }}'; return false">
+    <td>{{ o.name }}</td>
+    <td>{{ o.address }}</td>
+    <td>
+      {% if o.status_job == 'ON' %}
+        <i class="fas fa-check" style="color: #099800"></i> in work
+      {% elif o.status_job == 'OFF' %}
+        <i class="fas fa-power-off" style="color: #af0c00;"></i> offline
+      {% elif o.status_job == 'DEFECT' %}
+        <i class="fas fa-tools" style="color: #e3813e;"></i> defect
+      {% endif %}
+    </td>
+    <td>
+      {% if o.status_situation == 'STABLE' %}
+        <i class="fas fa-check" style="color: #099800"></i> stable
+      {% elif o.status_situation == 'FIRE' %}
+        <i class="fas fa-fire-alt" style="color: #af0c00;"></i> fire
+      {% elif o.status_situation == 'WARNING' %}
+        <i class="fas fa-exclamation-circle" style="color: #e3813e;"></i> warning
+      {% elif o.status_situation == 'NULL' %}
+        <i class="fas fa-exclamation-circle" style="color: #af0c00;"></i> no info
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% if sensors %}
+<hr>
+<div class="account__screen__title" style="margin-top: 24px">Object state details: {{ obj.name }}</div>
+<table class="objects">
+  <tr>
+    <th>Description</th>
+    <th>Battery</th>
+    <th>Last report</th>
+    <th style="width: 15%">Status</th>
+    <th style="width: 15%">Situation</th>
+  </tr>
+  {% for s in sensors %}
+  <tr>
+    <td>{{ s.description }}</td>
+    <td>{{ s.battery }}%</td>
+    <td>{{ (datetime.now() - s.report_last).seconds }} seconds ago</td>
+    <td>
+      {% if s.status_job == 'ON' %}
+        <i class="fas fa-check" style="color: #099800"></i> in work
+      {% elif s.status_job == 'OFF' %}
+        <i class="fas fa-power-off" style="color: #af0c00;"></i> offline
+      {% elif s.status_job == 'BROKEN' %}
+        <i class="fas fa-tools" style="color: #af0c00;"></i> broken
+      {% elif s.status_job == 'CHARGE_LOW' %}
+        <i class="fas fa-battery-quarter" style="color: #e3813e;"></i> low charge
+      {% elif s.status_job == 'DISCHARGED' %}
+        <i class="fas fa-battery-slash" style="color: #af0c00;"></i> discharged
+      {% endif %}
+    </td>
+    <td>
+      {% if s.status_situation == 'STABLE' %}
+        <i class="fas fa-check" style="color: #099800"></i> stable
+      {% elif s.status_situation == 'FIRE' %}
+        <i class="fas fa-fire-alt" style="color: #af0c00;"></i> fire
+      {% elif s.status_situation == 'WARNING' %}
+        <i class="fas fa-exclamation-circle" style="color: #e3813e;"></i> warning
+      {% elif s.status_situation == 'NULL' %}
+        <i class="fas fa-exclamation-circle" style="color: #af0c00;"></i> no info
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}

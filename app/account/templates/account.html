@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Account
+{% endblock %}
+
+{% block body %}
+
+<div class="account__screen__title">My Account</div>
+<div class="account__screen__inner">
+    <div class="account__screen__image"><i class="fas fa-user-circle"></i></div>
+    <div class="account__screen__info">
+        <table id="account__screen__info">
+          <tr>
+            <td><div class="account__screen__info__title">ID</div></td>
+            <td>{{ current_user.account.id }}</td>
+          </tr>
+          <tr>
+            <td><div class="account__screen__info__title">Username</div></td>
+            <td>{{ current_user.account.login }}</td>
+          </tr>
+          <tr>
+            <td><div class="account__screen__info__title">Fullname</div></td>
+            <td>{{ current_user.account.fullname }}</td>
+          </tr>
+          <tr>
+            <td><div class="account__screen__info__title">Phone number</div></td>
+            <td>{{ current_user.account.phone }}</td>
+          </tr>
+          <tr>
+            <td><div class="account__screen__info__title">Reg. date</div></td>
+            <td>{{ current_user.account.reg_datetime }}</td>
+          </tr>
+        </table>
+    </div>
+</div>
+<div class="account__screen__access__inner">
+    <div class="account__screen__title">Access token</div>
+    <div class="tooltip"><div class="account__screen__access__title"><i class="fas fa-info-circle"></i></div>
+      <span class="text">With this token, you can use our API (Application Programming Interface) to integrate with your services.
+          Important! In no case do not share this token, as its owner will get full access to the account even without a login and password!</span>
+    </div>
+</div>
+    <label>
+        <input readonly class="input__text" type="text" value="{{ access_token }}" style="margin-top: 20px" />
+    </label>
+{% endblock %}

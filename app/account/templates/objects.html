@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Objects
+{% endblock %}
+
+{% block body %}
+
+<div class="account__screen__title">My objects</div>
+<table id="objects">
+  <tr>
+    <th>Name</th>
+    <th>Dispatcher</th>
+    <th>Address</th>
+    <th>Act</th>
+  </tr>
+  {% for o in objects %}
+  <tr>
+    <td>{{ o.name }}</td>
+    <td>{{ o.dispatcher.name }}</td>
+    <td>{{ o.address }}</td>
+    <td><a class="objects__screen__action" href="/account/object/{{o.id}}/update"><i class="fas fa-pen"></i></a> <a class="objects__screen__action" href="/account/object/{{o.id}}/delete"><i class="fas fa-trash" style="margin-left: 4px"></i></a></td>
+  </tr>
+  {% endfor %}
+</table>
+<hr>
+<div class="account__screen__title" style="margin-top: 24px">Create a new object</div>
+<form action="" method="post" style="margin-top: 24px">
+
+  <table id="objects__screen__new">
+    <tr>
+      <td><div class="objects__screen__new__title">Object name</div></td>
+      <td><label>
+          <input required class="input__text" type="text" name="name"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td><div class="objects__screen__new__title">Address object</div></td>
+      <td><label>
+          <input required class="input__text" type="text" name="address" />
+      </label></td>
+    </tr>
+    <tr>
+      <td><div class="objects__screen__new__title">Dispatcher</div></td>
+      <td>{{ form.dispatcher(class_='objects__screen__new__dispatcher') }}</td>
+    </tr>
+  </table>
+  <input type="submit" value="Create" />
+</form>
+{% endblock %}

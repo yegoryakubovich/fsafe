@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sign up
+{% endblock %}
+
+{% block body %}
+
+<div class="sign__first__screen">
+    <div class="sign__first__screen__inner">
+        <div class="sign__first__screen__form">
+            <form action="" method="post" class="form-contact">
+                <div class="sign__first__screen__title">Sign up</div>
+
+                <div class="sign__first__screen__subtitle">Login</div>
+                <label>
+                    <input class="input__text" type="text" value="{{ login }}" name="login" required />
+                </label><br>
+
+                <div class="sign__first__screen__subtitle">Password</div>
+                <label>
+                    <input class="input__text" type="password" value="{{ password }}" name="password" required />
+                </label>
+
+                <div class="sign__first__screen__subtitle">Full name</div>
+                <label>
+                    <input class="input__text" type="text" name="fullname" value="{{ fullname }}" required />
+                </label><br>
+
+                <div class="sign__first__screen__subtitle">Phone number</div>
+                <label>
+                    <input class="input__text" type="tel" name="phone" placeholder="+375291234567" pattern="+375[0-9]{9}" value="{{ phone }}" required>
+                </label><br>
+
+                <label class="checkbox__container">
+                    <div class="sign__first__screen__subtitle">
+                        I accept the <a class="sign__first__screen__url__link" href="/terms">terms</a> of service
+                    </div>
+                  <input type="checkbox" name="remember_me">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="button__center">
+                    <input type="submit" value="Sign In" />
+                </div>
+                <div class="sign__first__screen__url__title">
+                  Already have an account? <a class="sign__first__screen__url__link" href="/account/login">Sign in</a> now!
+                </div>
+        </form>
+        </div>
+        <div class="sign__first__screen__image__registration"></div>
+    </div>
+</div>
+
+{% endblock %}

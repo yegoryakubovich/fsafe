@@ -1,0 +1,160 @@
+.input__text {
+  width: 100%;
+  height: 50px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+/* Input button */
+
+
+.nav__menu {
+  cursor: pointer;
+}
+
+
+.button__center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #ae73ef;
+  border: none;
+  color: white;
+  padding: 16px 48px;
+  text-decoration: none;
+  margin: 4px 0;
+  cursor: pointer;
+  align-content: center;
+}
+
+/* Checkbox */
+.checkbox__container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox__container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.checkbox__container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.checkbox__container input:checked ~ .checkmark {
+  background-color: #ae73ef;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox__container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox__container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.alert_error {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  border-radius: 4px;
+  margin: 0 12px 6px 12px;
+}
+
+.alert_suc {
+  padding: 20px;
+  background-color: #099800;
+  color: white;
+  border-radius: 4px;
+  margin: 0 12px 6px 12px;
+}
+
+.close_btn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close_btn:hover {
+    color: black;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: flex;
+}
+
+.tooltip .text {
+  margin-top: 24px;
+  visibility: hidden;
+  width: 200px;
+  background-color: #999;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 20px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .text {
+  visibility: visible;
+}
+
+@media (max-width: 460px) {
+  .tooltip {
+    display: none;
+  }
+}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sensors
+{% endblock %}
+
+{% block body %}
+
+<div class="account__screen__title">My sensors</div>
+<table id="objects">
+  <tr>
+    <th>Object</th>
+    <th>Description</th>
+    <th>Act</th>
+  </tr>
+  {% for s in sensors %}
+  <tr>
+    <td>{{ s.object.name }}</td>
+    <td>{{ s.description }}</td>
+    <td><a class="objects__screen__action" href="/account/sensor/{{s.id}}/update"><i class="fas fa-pen"></i></a> <a class="objects__screen__action" href="/account/sensor/{{s.id}}/delete"><i class="fas fa-trash" style="margin-left: 4px"></i></a></td>
+  </tr>
+  {% endfor %}
+</table>
+<hr>
+<div class="account__screen__title" style="margin-top: 24px">Create a new sensor</div>
+<form action="" method="post" style="margin-top: 24px">
+
+  <table id="objects__screen__new">
+    <tr>
+      <td><div class="objects__screen__new__title">Object</div></td>
+      <td>{{ form.object(class_='objects__screen__new__dispatcher') }}</td>
+    </tr>
+    <tr>
+      <td><div class="objects__screen__new__title">Description</div></td>
+      <td><label>
+          <input required class="input__text" type="text" name="description" />
+      </label></td>
+    </tr>
+  </table>
+  <input type="submit" value="Create" />
+</form>
+{% endblock %}
