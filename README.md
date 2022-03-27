@@ -19,6 +19,10 @@ The project provides two types of interfaces: API and UI. Based on the Flask fra
 - DB_PASSWORD
 - DB_HOST
 - DB_PORT
+- CALL_TOKEN
+- CALL_CAMPAIGN_ID
+- CALL_EMERGENCY
+- TG_TOKEN
 #### 2.3 Run server
 ```python main.py```
 

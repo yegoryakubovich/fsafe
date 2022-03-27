@@ -16,7 +16,7 @@ blueprint_account_ui = Blueprint('account_ui', __name__, template_folder='templa
 def ui_main():
     account = current_user.account
     access_token = account.create_access_token()
-    return render_template('account.html', logged=True, auto_refresh=True, access_token=access_token)
+    return render_template('account.html', logged=True, access_token=access_token)
 
 
 @blueprint_account_ui.route("/state", methods=['GET'])
@@ -150,8 +150,11 @@ def ui_registration():
                                    login=login, password=password, fullname=fullname, phone=phone)
 
         # Create account
-        account = Account(login=login, password=password, fullname=fullname, phone=phone, reg_datetime=datetime.now())
+        account = Account(login=login, password=password, fullname=fullname, phone='+{}'.format(phone),
+                          reg_datetime=datetime.now())
         account.save()
+        account.create_qr()
+
         login_user(AccountLogin().create(account))
 
         flash('Successful sign up')

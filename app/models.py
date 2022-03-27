@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from flask_jwt_extended import create_access_token
 from peewee import *
+from qrcode import make
 
 from app.status import SensorStatusSituation, ObjectStatusJob, ObjectStatusSituation, SensorStatusJob
 from config import DB_PORT, DB_PASSWORD, DB_USER, DB_NAME, DB_HOST
@@ -28,13 +29,19 @@ class Account(BaseModel):
     login = CharField(max_length=24)
     password = CharField(max_length=24)
     fullname = CharField(max_length=128)
-    phone = IntegerField()
+    phone = CharField(max_length=24)
+    tg_id = IntegerField(null=True)
+    tg_username = CharField(max_length=128, null=True)
     reg_datetime = DateTimeField()
 
     def create_access_token(self, expire_time=1):
         expires_delta = timedelta(expire_time)
         access_token = create_access_token(identity=self.id, expires_delta=expires_delta)
         return access_token
+
+    def create_qr(self):
+        img = make('t.me/fsafe_bot?start={}'.format(self.id))
+        img.save('app/static/images/tg/{}.png'.format(self.id))
 
     class Meta:
         db_table = "accounts"

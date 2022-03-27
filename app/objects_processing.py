@@ -4,10 +4,28 @@ from time import sleep
 
 from app.models import Object, ObjectStatusJob, Sensor, SensorStatusJob, SensorStatusSituation, ObjectStatusSituation, \
     Report
+from app.notifications import send_notification, send_notification_emergency
+
+
+texts = {
+    'off': 'The FSafe system for the object \"{}\" has been disabled.\n\n'
+           'Go to <a href=\"https://fsafe.yegoryakubovich.com/account/state/{}\">State page</a> for details',
+    'defect': 'Sensors of object \"{}\" has defect.\n\n'
+              'Go to <a href=\"https://fsafe.yegoryakubovich.com/account/state/{}\">State page</a> for details',
+    'fire': 'Информация в данном сообщении является недостоверной. Сенсорами на объекте "{}" в комнате "{}"'
+            'был обнаружен пожар!\n\nМы уведомили экстренные службы',
+    'warning': 'Ситуация переведена в статус предупреждения. Будьте аккуратны!',
+    'stable': 'Ситуация переведена в статус стабильно.',
+    'fire_emergency': 'Информация в данном сообщении является недостоверной. Автоматический звонок системой Fire Safe!'
+                      '\n\nИзвещателями был замечен пожар по адресу "{}". Комната: {}.',
+}
 
 
 def objects_processing():
     for obj in Object.select():
+        status_job_init = obj.status_job
+        status_situation_init = obj.status_situation
+
         obj_sensors = [s for s in Sensor.select().where(Sensor.object == obj)]
 
         if not obj_sensors:
@@ -42,6 +60,36 @@ def objects_processing():
             obj.status_situation = ObjectStatusSituation.stable
 
         obj.save()
+
+        if status_job_init != obj.status_job:
+            # any => off
+            if obj.status_job == ObjectStatusJob.off:
+                send_notification(account=obj.account,
+                                  notification=texts['off'].format(obj.name, obj.id))
+
+            # any => defect
+            elif obj.status_job == ObjectStatusJob.defect:
+                send_notification(account=obj.account,
+                                  notification=texts['defect'].format(obj.name, obj.id))
+        if status_situation_init != obj.status_situation:
+            # fire, call+emergency
+            if obj.status_situation == ObjectStatusSituation.fire:
+                sensor_fire = Sensor.get_or_none((Sensor.object == obj)
+                                                 & (Sensor.status_situation == SensorStatusSituation.fire))
+
+                send_notification(account=obj.account,
+                                  notification=texts['fire'].format(obj.name, sensor_fire.description), call=True)
+                send_notification_emergency(notification=texts['fire_emergency']
+                                            .format(obj.address, sensor_fire.description))
+
+            # warning
+            elif obj.status_situation == ObjectStatusSituation.warning:
+                send_notification(account=obj.account, notification=texts['warning'])
+
+            # warning => stable
+            elif obj.status_situation == ObjectStatusSituation.stable \
+                    and status_situation_init == SensorStatusSituation.warning:
+                send_notification(account=obj.account, notification=texts['stable'])
 
 
 def sensors_processing():

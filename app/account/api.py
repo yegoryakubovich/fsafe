@@ -18,19 +18,21 @@ def api_registration(**kwargs):
     login = kwargs.get("login")
     password = kwargs.get("password")
     fullname = kwargs.get("fullname")
-    phone = kwargs.get("phone")
-
+    phone = kwargs.get("phone").replace('+', '')
     # Validation
     if Account.get_or_none(Account.login == login):
         return {"message": "Login already exists"}, 422
     if len(login) < 8 or len(password) < 8:
         return {"message": "Login and password length from 8 to 24 characters"}, 422
-    if len(str(phone)) != 9:
-        return {"message": "Phone number must be 9 characters"}, 422
+    if not phone.isdigit():
+        return {"message": 'Phone number must be in the format "+375291234567"'}, 422
+    if len(str(phone)) != 12:
+        return {"message": 'Phone number must be 12 characters'}, 422
 
     # Create account
     account = Account(login=login, password=password, fullname=fullname, phone=phone, reg_datetime=datetime.now())
     account.save()
+    account.create_qr()
     access_token = account.create_access_token()
     return {"access_token": access_token}
 
@@ -57,6 +59,7 @@ def api_object_report(**kwargs):
     account = Account.get_or_none(Account.id == account_id)
 
     reports = kwargs.get('reports')
+    report_datetime = datetime.now()
 
     for report in reports:
         try:
@@ -76,7 +79,7 @@ def api_object_report(**kwargs):
             continue
 
         report = Report(sensor=sensor, battery=battery, is_smoke=is_smoke, is_fire=is_fire, broken=broken,
-                        datetime=datetime.now())
+                        datetime=report_datetime)
         report_processing(sensor=report.sensor, report=report)
         report.save()
 

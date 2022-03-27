@@ -5,6 +5,35 @@ Account
 {% endblock %}
 
 {% block body %}
+<style>
+   .account__screen__tg__image {
+      background: url("{{ url_for('static', filename='images/tg/') }}{{ current_user.account.id }}.png") center no-repeat;
+      background-size: 100%;
+      width: 400px;
+      height: 400px;
+    }
+</style>
+
+<div id="account__screen__tg" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="account__screen__title">Connect to Telegram</div>
+    <div class="account__screen__tg__inner">
+        <div class="account__screen__tg__info">
+            <div style="padding-right: 20px">
+                Scan the QR code on your smartphone or follow <a target="_blank" class="sign__first__screen__url__link" href="https://t.me/fsafe_bot?start={{ current_user.account.id }}">this link</a> to connect telegrams to your account.<br>
+                <br>
+                Advantages:
+                <br>- instant notification in case of operation failure
+                <br>- notification in case of low battery
+                <br>- instant messages in case of a dangerous situation
+            </div>
+        </div>
+        <div class="account__screen__tg__image" style="">
+        </div>
+    </div>
+  </div>
+</div>
 
 <div class="account__screen__title">My Account</div>
 <div class="account__screen__inner">
@@ -28,12 +57,21 @@ Account
             <td>{{ current_user.account.phone }}</td>
           </tr>
           <tr>
+            <td><div class="account__screen__info__title">Telegram</div></td>
+            {% if current_user.account.tg_username %}
+            <td>{{ current_user.account.tg_username }}</td>
+            {% else %}
+            <td style="padding: 0"><button class="account__screen__tg__btn" id="account__screen__tg__btn"><i class="fas fa-link"></i> connect now</button></td>
+            {% endif %}
+          </tr>
+          <tr>
             <td><div class="account__screen__info__title">Reg. date</div></td>
             <td>{{ current_user.account.reg_datetime }}</td>
           </tr>
         </table>
     </div>
 </div>
+
 <div class="account__screen__access__inner">
     <div class="account__screen__title">Access token</div>
     <div class="tooltip"><div class="account__screen__access__title"><i class="fas fa-info-circle"></i></div>
@@ -44,4 +82,22 @@ Account
     <label>
         <input readonly class="input__text" type="text" value="{{ access_token }}" style="margin-top: 20px" />
     </label>
+
+<script>
+    const modal = document.getElementById("account__screen__tg");
+    const btn = document.getElementById("account__screen__tg__btn");
+    const span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+</script>
+
 {% endblock %}
