@@ -158,4 +158,8 @@
   .account__screen__tg__image {
     display: none;
   }
+  .account__screen__tg__info {
+    margin-top: 24px;
+    width: 100%;
+  }
 }

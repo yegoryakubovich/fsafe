@@ -41,7 +41,7 @@ def send_notification(account, notification, call=False):
             'phone': account.phone,
             'text': '<p>{}</p>'.format(notification),
         }
-        p = post(url=CALL_URL, data=data)
+        post(url=CALL_URL, data=data)
 
 
 def send_notification_emergency(notification):
@@ -51,7 +51,7 @@ def send_notification_emergency(notification):
         'phone': CALL_EMERGENCY,
         'text': notification,
     }
-    p = post(url=CALL_URL, data=data)
+    post(url=CALL_URL, data=data)
 
 
 @dp.message_handler(commands=['start'])

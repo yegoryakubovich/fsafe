@@ -32,7 +32,6 @@ def api_registration(**kwargs):
     # Create account
     account = Account(login=login, password=password, fullname=fullname, phone=phone, reg_datetime=datetime.now())
     account.save()
-    account.create_qr()
     access_token = account.create_access_token()
     return {"access_token": access_token}
 

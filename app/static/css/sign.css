@@ -98,5 +98,8 @@
     width: 100%;
     margin: 16px;
   }
+  .sign__first__screen__inner {
+    justify-content: center;
+  }
 }
 

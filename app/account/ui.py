@@ -15,6 +15,7 @@ blueprint_account_ui = Blueprint('account_ui', __name__, template_folder='templa
 @login_required
 def ui_main():
     account = current_user.account
+    account.create_qr()
     access_token = account.create_access_token()
     return render_template('account.html', logged=True, access_token=access_token)
 
@@ -153,7 +154,6 @@ def ui_registration():
         account = Account(login=login, password=password, fullname=fullname, phone='+{}'.format(phone),
                           reg_datetime=datetime.now())
         account.save()
-        account.create_qr()
 
         login_user(AccountLogin().create(account))
 
